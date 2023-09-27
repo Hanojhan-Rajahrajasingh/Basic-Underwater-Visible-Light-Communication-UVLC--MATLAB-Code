@@ -25,10 +25,15 @@ beta = 1.4;    % Scale parameter
 Refractive_Index =1.5; % Refractive Index of the Lens
 FOV_PD =70; % Field of View of the Photodiode
 Concentrator_Gain =( Refractive_Index ^2) /(sind(FOV_PD).^2) ; % Gain of the optical concentrator
-C = 0.1162;  % extinction coefficient
+
+C = 0.056;  % extinction coefficient for pure sea water
+% C = 0.15;  % extinction coefficient for clear ocean water
+% C = 0.305;  % extinction coefficient for coastal ocean water
+
 No_LED =10; % Total nummber of LEDs
 Power_LED =1; % Transmitted Power of the LED
 Pt = Power_LED*No_LED;
+
 d = 10;  % Distance between transmitter and receiver (m)
 theta =70; % Semi angle of the LED at half power illumination
 m = - log10 (2) / log10 ( cosd ( theta )); % Lamberts Mode Number
