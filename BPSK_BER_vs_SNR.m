@@ -35,10 +35,11 @@ Power_LED =1; % Transmitted Power of the LED
 Pt = Power_LED*No_LED;
 
 d = 10;  % Distance between transmitter and receiver (m)
-theta =70; % Semi angle of the LED at half power illumination
-m = - log10 (2) / log10 ( cosd ( theta )); % Lamberts Mode Number
+phiCap =70; % Semi angle of the LED at half power illumination
+m = - log10 (2) / log10 ( cosd ( phiCap )); % Lamberts Mode Number
 Adet = 0.05; % Area of the Photodiode
 phi = 40;     % Irradiance angle (assumed to be normal incidence)
+theta = 60; % Receiver angle
 
 % Convert SNR from dB to linear scale
 SNR = 10.^(EbN0_dB / 10);
@@ -58,7 +59,7 @@ for i = 1:num_points
         %Hturb = gamrnd(alpha,beta);
         Hturb = random('Gamma', alpha, 1/beta, 1, num_bits);
         Ha = exp(-C*d);
-        Hg = ((m+1)*Adet*cosd(phi)^m./(2*pi*d^2))*Concentrator_Gain;
+        Hg = ((m+1)*Adet*cosd(phi)^m./(2*pi*d^2))*Concentrator_Gain*cosd(theta);
         
         H = Hg*Hturb*Ha;
         
